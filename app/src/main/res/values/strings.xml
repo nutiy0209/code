@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">code</string>
+    <string name="Press_To_Talk">按下並說話</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <!-- Modes for spinners -->
+    <string-array name="spinner_modes1">
+        <item>聊天模式</item>
+        <item>懷舊模式</item>
+        <item>量表模式</item>
+    </string-array>
+
+    <string-array name="modes_array">
+        <item>量表模式</item>
+        <item>聊天模式</item>
+        <item>懷舊模式</item>
+    </string-array>
+
+    <string-array name="spinner_modes3">
+        <item>懷舊模式</item>
+        <item>聊天模式</item>
+        <item>量表模式</item>
+    </string-array>
+
+    <!-- 主類別 -->
+    <string-array name="main_categories">
+        <item>醫療資源</item>
+        <item>日常照護</item>
+        <item>心理支持</item>
+    </string-array>
+
+    <!-- 醫療資訊的次類別 -->
+    <string-array name="sub_categories_medical">
+        <item>衛生福利部獎助失智症社區服務據點</item>
+    </string-array>
+
+    <!-- 日常照護的次類別 -->
+    <string-array name="sub_categories_daily_care">
+        <item>個人衛生</item>
+        <item>飲食安排</item>
+        <item>睡眠管理</item>
+    </string-array>
+
+    <!-- 心理支持的次類別 -->
+    <string-array name="sub_categories_psychological_support">
+        <item>壓力管理</item>
+        <item>情緒支持</item>
+        <item>社交活動</item>
+    </string-array>
+</resources>
