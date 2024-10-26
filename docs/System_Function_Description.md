@@ -21,3 +21,4 @@
 - OkHttp：負責網路請求和數據傳輸
 - AlarmManager：負責定時提醒
 - TimePicker 和 NumberPicker：負責用戶的時間和數字輸入
+要高潮了哥哥
