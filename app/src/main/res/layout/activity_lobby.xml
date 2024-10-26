@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".ui.LobbyActivity"
+    android:background="@color/white">
+
+    <Button
+        android:id="@+id/button_scale"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="量表"
+        android:fontFamily="@font/microsoft_jhenghei"
+        android:textSize="18sp"
+        android:background="@drawable/button_background"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
+
+    <Button
+        android:id="@+id/button_nostalgic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="懷舊"
+        android:fontFamily="@font/microsoft_jhenghei"
+        android:textSize="18sp"
+        android:background="@drawable/button_background"
+        android:layout_below="@id/button_scale"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
