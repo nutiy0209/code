@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.code.R;
+import com.example.code.welcome.LobbyPatient;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -23,12 +24,12 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class RegistrationActivity extends AppCompatActivity {
+public class Register extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main3);
+        setContentView(R.layout.register);
 
         final EditText editTextName = findViewById(R.id.editTextName);
         final EditText editTextGender = findViewById(R.id.editTextGender);  // 改为直接输入性别
@@ -72,7 +73,7 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 // 请求失败时运行
-                runOnUiThread(() -> Toast.makeText(RegistrationActivity.this, "请求失败: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast.makeText(Register.this, "请求失败: " + e.getMessage(), Toast.LENGTH_SHORT).show());
             }
 
             @Override
@@ -82,9 +83,9 @@ public class RegistrationActivity extends AppCompatActivity {
                     String responseBody = response.body().string();
                     Log.d("HTTP_RESPONSE", "Response Body: " + responseBody); // 打印服务器返回的消息
                     runOnUiThread(() -> {
-                        Toast.makeText(RegistrationActivity.this, "注册完成", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register.this, "注册完成", Toast.LENGTH_LONG).show();
                         // 启动 MainActivity 并关闭当前 Activity
-                        Intent intent = new Intent(RegistrationActivity.this, LobbyActivity.class);
+                        Intent intent = new Intent(Register.this, LobbyPatient.class);
                         intent.putExtra("userName", name);
                         startActivity(intent);
                         finish();
@@ -94,7 +95,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     int statusCode = response.code();
                     Log.d("HTTP_RESPONSE", "Status Code: " + statusCode);
                     Log.d("HTTP_RESPONSE", "Response Body: " + responseBody);
-                    runOnUiThread(() -> Toast.makeText(RegistrationActivity.this, "注册失败", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(Register.this, "注册失败", Toast.LENGTH_SHORT).show());
                 }
             }
         });

@@ -17,7 +17,7 @@ import com.example.code.R;
 
 import java.util.Calendar;
 
-public class ReminderSetupActivity extends AppCompatActivity {
+public class SettingList extends AppCompatActivity {
 
     private TimePicker timePickerBreakfast;
     private TimePicker timePickerLunch;
@@ -32,7 +32,7 @@ public class ReminderSetupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
+        setContentView(R.layout.setting_list);
 
         // 初始化控件
         timePickerBreakfast = findViewById(R.id.timePickerBreakfast);

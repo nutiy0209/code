@@ -1,4 +1,4 @@
-package com.example.code.ui;
+package com.example.code.exercise;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.OptIn;

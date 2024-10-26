@@ -44,7 +44,7 @@ import com.example.code.Message;
 import com.example.code.MessageAdapter;
 import com.example.code.R;
 
-public class ScaleActivity extends AppCompatActivity {
+public class ScaleChat extends AppCompatActivity {
 
     private static final int REQUEST_VOICE_INPUT = 1001;
     private static final int REQUEST_CODE = 1002;
@@ -65,7 +65,7 @@ public class ScaleActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main5);
+        setContentView(R.layout.scale_chat);
 
         Spinner spinnerModes = findViewById(R.id.SpinnerModes2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -78,7 +78,7 @@ public class ScaleActivity extends AppCompatActivity {
                 String selectedMode = (String) parent.getItemAtPosition(position);
 
                 if ("懷舊模式".equals(selectedMode)) {
-                    Intent intent = new Intent(ScaleActivity.this, NostalgicActivity.class);
+                    Intent intent = new Intent(ScaleChat.this, ChatOld.class);
                     startActivity(intent);
                 }
             }
@@ -98,21 +98,16 @@ public class ScaleActivity extends AppCompatActivity {
         editor.putString("api_key", "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");
         editor.apply();
 
-        Button button = findViewById(R.id.camera1);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(ScaleActivity.this, PoseMaster.class);
-            startActivity(intent);
-        });
 
         ImageButton person = findViewById(R.id.Person1);
         person.setOnClickListener(v -> {
-            Intent intent = new Intent(ScaleActivity.this, RegistrationActivity.class);
+            Intent intent = new Intent(ScaleChat.this, Register.class);
             startActivity(intent);
         });
 
         ImageButton setting = findViewById(R.id.Setting1);
         setting.setOnClickListener(v -> {
-            Intent intent = new Intent(ScaleActivity.this, ReminderSetupActivity.class);
+            Intent intent = new Intent(ScaleChat.this, SettingList.class);
             startActivityForResult(intent, REQUEST_CODE);
         });
 
@@ -218,7 +213,7 @@ public class ScaleActivity extends AppCompatActivity {
         String apiKey = preferences.getString("api_key", null);
 
         if (apiKey == null || apiKey.isEmpty()) {
-            runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "API 密钥缺失！", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> Toast.makeText(ScaleChat.this, "API 密钥缺失！", Toast.LENGTH_SHORT).show());
             return;
         }
 
@@ -244,14 +239,14 @@ public class ScaleActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败，请检查网络连接或重试", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败，请检查网络连接或重试", Toast.LENGTH_SHORT).show());
                 Log.e("ChatGPT", "请求失败", e);
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if (!response.isSuccessful()) {
-                    runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败", Toast.LENGTH_SHORT).show());
                     Log.e("ChatGPT", "请求失败: " + response.message());
                     return;
                 }
@@ -449,14 +444,14 @@ public class ScaleActivity extends AppCompatActivity {
         sendMessagesToChatGPT(messagesArray, new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败", Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败", Toast.LENGTH_SHORT).show());
                 Log.e("ChatGPT", "请求失败", e);
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 if (!response.isSuccessful()) {
-                    runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败", Toast.LENGTH_SHORT).show());
+                    runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败", Toast.LENGTH_SHORT).show());
                     Log.e("ChatGPT", "请求失败: " + response.message());
                     return;
                 }
@@ -476,14 +471,14 @@ public class ScaleActivity extends AppCompatActivity {
                         sendMessagesToChatGPT(messagesArray, new Callback() {
                             @Override
                             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                                runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败", Toast.LENGTH_SHORT).show());
+                                runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败", Toast.LENGTH_SHORT).show());
                                 Log.e("ChatGPT", "请求失败", e);
                             }
 
                             @Override
                             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                                 if (!response.isSuccessful()) {
-                                    runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "请求失败", Toast.LENGTH_SHORT).show());
+                                    runOnUiThread(() -> Toast.makeText(ScaleChat.this, "请求失败", Toast.LENGTH_SHORT).show());
                                     Log.e("ChatGPT", "请求失败: " + response.message());
                                     return;
                                 }
@@ -497,7 +492,7 @@ public class ScaleActivity extends AppCompatActivity {
 
                                     runOnUiThread(() -> addMessageToChat("第二段长文的回复: " + reply, false));
                                     // 初始化完成后，允许用户进行聊天
-                                    Toast.makeText(ScaleActivity.this, "初始对话已完成，您现在可以进行聊天", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(ScaleChat.this, "初始对话已完成，您现在可以进行聊天", Toast.LENGTH_SHORT).show();
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -522,13 +517,12 @@ public class ScaleActivity extends AppCompatActivity {
         }
     }
 
-
     private void sendMessagesToChatGPT(JSONArray messagesArray, Callback callback) {
         SharedPreferences preferences = getSharedPreferences("app_prefs", MODE_PRIVATE);
         String apiKey = preferences.getString("api_key", "");
 
         if (apiKey == null || apiKey.isEmpty()) {
-            runOnUiThread(() -> Toast.makeText(ScaleActivity.this, "API 密钥缺失！", Toast.LENGTH_SHORT).show());
+            runOnUiThread(() -> Toast.makeText(ScaleChat.this, "API 密钥缺失！", Toast.LENGTH_SHORT).show());
             return;
         }
 

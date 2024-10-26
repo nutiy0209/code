@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ScaleActivity">
+    tools:context=".ui.HealthEducation">
 
     <ImageButton
         android:id="@+id/Person1"
@@ -32,16 +32,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.022" />
 
+    <!-- 主類別 Spinner -->
+
+    <!-- 次類別 Spinner -->
+
     <Spinner
-        android:id="@+id/SpinnerModes2"
+        android:id="@+id/SpinnerMode3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="100dp"
         android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/Setting1"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Spinner
+        android:id="@+id/spinnerMainCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <Spinner
+        android:id="@+id/spinnerSubCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spinnerMainCategory" />
+
 
     <ImageButton
         android:id="@+id/Setting1"
@@ -69,7 +92,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView2"
+        app:layout_constraintTop_toBottomOf="@id/spinnerSubCategory"
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
@@ -88,11 +111,7 @@
             android:layout_height="wrap_content"
             android:text="@string/Press_To_Talk" />
 
-        <Button
-            android:id="@+id/camera1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="鏡頭" />
+
 
     </LinearLayout>
 

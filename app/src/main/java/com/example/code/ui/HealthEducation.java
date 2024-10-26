@@ -42,6 +42,7 @@ import com.example.code.api.HealthEducationRquest;
 import com.example.code.R;
 import com.example.code.api.ApiResponse;
 import com.example.code.api.ApiService;
+import com.example.code.exercise.PoseMaster;
 
 public class HealthEducation extends AppCompatActivity {
 
@@ -68,7 +69,7 @@ public class HealthEducation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main7);
+        setContentView(R.layout.health_education);
 
         // 创建适配器
         Spinner spinnerMode = findViewById(R.id.SpinnerMode3);
@@ -123,11 +124,11 @@ public class HealthEducation extends AppCompatActivity {
                     String selectedMode = (String) parent.getItemAtPosition(position);
 
                     if ("量表模式".equals(selectedMode)) {
-                        Intent intent = new Intent(HealthEducation.this, ScaleActivity.class);
+                        Intent intent = new Intent(HealthEducation.this, ScaleChat.class);
                         startActivity(intent);
                     }
                     if ("懷舊模式".equals(selectedMode)) {
-                        Intent intent = new Intent(HealthEducation.this, NostalgicActivity.class);
+                        Intent intent = new Intent(HealthEducation.this, ChatOld.class);
                         startActivity(intent);
                     }
                 }
@@ -139,7 +140,6 @@ public class HealthEducation extends AppCompatActivity {
                 // 处理没有选择的情况
             }
         });
-
 
         // 初始化 RecyclerView 和消息列表
         recyclerView = findViewById(R.id.recyclerView1);
@@ -153,22 +153,10 @@ public class HealthEducation extends AppCompatActivity {
         editor.apply();
 
         // 按钮设置
-        Button button = findViewById(R.id.camera1);
-        //運動辨識
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(HealthEducation.this, PoseMaster.class);
-            startActivity(intent);
-        });
-
-        ImageButton person = findViewById(R.id.Person1);
-        person.setOnClickListener(v -> {
-            Intent intent = new Intent(HealthEducation.this, RegistrationActivity.class);
-            startActivity(intent);
-        });
 
         ImageButton setting = findViewById(R.id.Setting1);
         setting.setOnClickListener(v -> {
-            Intent intent = new Intent(HealthEducation.this, ReminderSetupActivity.class);
+            Intent intent = new Intent(HealthEducation.this, SettingList.class);
             startActivityForResult(intent, REQUEST_CODE);
         });
 

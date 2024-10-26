@@ -44,8 +44,9 @@ import com.example.code.Message;
 import com.example.code.MessageAdapter;
 import com.example.code.api.NostalgicRequest;
 import com.example.code.R;
+import com.example.code.exercise.PoseMaster;
 
-public class NostalgicActivity extends AppCompatActivity {
+public class ChatOld extends AppCompatActivity {
 
     private static final int REQUEST_VOICE_INPUT = 1001;
     private static final int REQUEST_CODE = 1002;
@@ -66,7 +67,7 @@ public class NostalgicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main6);
+        setContentView(R.layout.chat_old);
 
         // 从 Intent 中获取 flask1 传递过来的数据
 //        Intent flask = getIntent();
@@ -102,7 +103,7 @@ public class NostalgicActivity extends AppCompatActivity {
                 // 处理选择事件，例如更新UI或保存选择
                 if ("量表模式".equals(selectedMode)) {
                     // 启动 MainActivity4
-                    Intent intent = new Intent(NostalgicActivity.this, ScaleActivity.class);
+                    Intent intent = new Intent(ChatOld.this, ScaleChat.class);
                     startActivity(intent);
                 }
             }
@@ -123,22 +124,9 @@ public class NostalgicActivity extends AppCompatActivity {
         //editor.putString("api_key", "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");
         editor.apply();
 
-        // 按钮设置
-        Button button = findViewById(R.id.camera1);
-        button.setOnClickListener(v -> {
-            Intent intent = new Intent(NostalgicActivity.this, PoseMaster.class);
-            startActivity(intent);
-        });
-
-        ImageButton person = findViewById(R.id.Person1);
-        person.setOnClickListener(v -> {
-            Intent intent = new Intent(NostalgicActivity.this, RegistrationActivity.class);
-            startActivity(intent);
-        });
-
         ImageButton setting = findViewById(R.id.Setting1);
         setting.setOnClickListener(v -> {
-            Intent intent = new Intent(NostalgicActivity.this, ReminderSetupActivity.class);
+            Intent intent = new Intent(ChatOld.this, SettingList.class);
             startActivityForResult(intent, REQUEST_CODE);
         });
 
@@ -211,7 +199,7 @@ public class NostalgicActivity extends AppCompatActivity {
                     if (apiResponse != null) {
                         // 打印日志或显示在 UI 上
                         Log.d("API_RESPONSE", "ChatGPT 回應: " + apiResponse.getChatgptReply());
-                        Toast.makeText(NostalgicActivity.this, "收到响应", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ChatOld.this, "收到响应", Toast.LENGTH_SHORT).show();
 
                         // 将响应数据传递到聊天界面
                         addMessageToChat(apiResponse.getChatgptReply(), false);

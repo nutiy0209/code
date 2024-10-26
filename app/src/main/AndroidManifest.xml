@@ -27,7 +27,7 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".ui.LobbyActivity"
+            android:name=".welcome.LobbyPatient"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,34 +36,35 @@
         </activity>
 
         <activity
-            android:name=".ui.NostalgicActivity"
+            android:name=".welcome.LobbyCaregiver"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.ChatOld"
             android:exported="false" />
         <activity
-            android:name=".ui.ChatMode"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ScaleActivity"
+            android:name=".ui.ScaleChat"
             android:exported="false" />
 
         <receiver android:name=".AlarmReceiver"
             android:exported="false"/>
 
         <activity
-            android:name=".ui.ReminderSetupActivity"
+            android:name=".ui.SettingList"
             android:exported="false" />
         <activity
-            android:name=".ui.RegistrationActivity"
+            android:name=".ui.Register"
             android:exported="false"
             android:theme="@style/Theme.Code" />
         <activity
-            android:name=".ui.PoseMaster"
-            android:exported="true" />
+            android:name=".exercise.PoseMaster"
+            android:exported="false" />
         <activity
-            android:name=".ui.Display"
-            android:exported="true" />
+            android:name=".exercise.Display"
+            android:exported="false" />
         <activity
             android:name=".ui.HealthEducation"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.PoseMaster">
+    tools:context=".exercise.PoseMaster">
 
     <androidx.camera.view.PreviewView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
     </androidx.camera.view.PreviewView>
 
-    <com.example.code.ui.Display
+    <com.example.code.exercise.Display
         android:id="@+id/displayOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
