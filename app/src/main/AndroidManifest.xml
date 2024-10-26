@@ -5,13 +5,12 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
-
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- For notifications -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.SET_ALARM" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
@@ -26,39 +25,45 @@
         android:theme="@style/Theme.Code"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity6"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity5"
-            android:exported="false" />
-
-        <receiver android:name=".AlarmReceiver" />
 
         <activity
-            android:name=".MainActivity4"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity3"
-            android:exported="false"
-            android:theme="@style/Theme.Code" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false"
-            android:label="@string/title_activity_main2"
-            android:theme="@style/Theme.Code" />
-        <activity
-            android:name=".MainActivity7"
+            android:name=".ui.LobbyActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".ui.NostalgicActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ChatMode"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ScaleActivity"
+            android:exported="false" />
+
+        <receiver android:name=".AlarmReceiver"
+            android:exported="false"/>
+
+        <activity
+            android:name=".ui.ReminderSetupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RegistrationActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Code" />
+        <activity
+            android:name=".ui.PoseMaster"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Display"
+            android:exported="true" />
+        <activity
+            android:name=".ui.HealthEducation"
+            android:exported="true" />
     </application>
 
 </manifest>

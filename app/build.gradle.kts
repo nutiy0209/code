@@ -35,6 +35,7 @@ android {
     }
 }
 
+
 dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
@@ -47,13 +48,19 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
 
-    implementation("androidx.camera:camera-core:1.1.0")
-    implementation("androidx.camera:camera-camera2:1.1.0")
-    implementation("androidx.camera:camera-lifecycle:1.1.0")
-    implementation("androidx.camera:camera-view:1.1.0")
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("androidx.camera:camera-core:1.2.2")
+    implementation("androidx.camera:camera-camera2:1.2.2")
+    implementation("androidx.camera:camera-lifecycle:1.2.2")
+    implementation("androidx.camera:camera-video:1.2.2")
+    implementation("androidx.camera:camera-view:1.2.2")
+    implementation("androidx.camera:camera-extensions:1.2.2")
+
+    // If you want to use the base sdk
+    implementation("com.google.mlkit:pose-detection:18.0.0-beta3")
 
 }
+
 
 

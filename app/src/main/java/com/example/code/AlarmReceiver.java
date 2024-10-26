@@ -11,6 +11,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import com.example.code.ui.NostalgicActivity;
+
 public class AlarmReceiver extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "ReminderChannel";
@@ -35,7 +37,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManager.createNotificationChannel(channel);
         }
 
-        Intent notificationIntent = new Intent(context, MainActivity.class);
+        Intent notificationIntent = new Intent(context, NostalgicActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
 
         Notification notification = new Notification.Builder(context, CHANNEL_ID)
