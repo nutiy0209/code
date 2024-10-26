@@ -11,8 +11,6 @@ import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +42,7 @@ import com.example.code.Message;
 import com.example.code.MessageAdapter;
 import com.example.code.api.NostalgicRequest;
 import com.example.code.R;
-import com.example.code.exercise.PoseMaster;
+import android.os.Build;
 
 public class ChatOld extends AppCompatActivity {
 
@@ -82,37 +80,6 @@ public class ChatOld extends AppCompatActivity {
 //                addMessageToChat(flaskReply, false); // 使用现有的聊天方法显示
 //            }
 //        }
-
-        // 创建适配器
-        Spinner spinnerMode = findViewById(R.id.SpinnerMode3);
-
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_modes3, android.R.layout.simple_spinner_item);
-
-        // 指定下拉列表的样式
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // 应用适配器到Spinner
-        spinnerMode.setAdapter(adapter);
-
-        // 设置选择事件监听
-        spinnerMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
-                String selectedMode = (String) parent.getItemAtPosition(position);
-                // 处理选择事件，例如更新UI或保存选择
-                if ("量表模式".equals(selectedMode)) {
-                    // 启动 MainActivity4
-                    Intent intent = new Intent(ChatOld.this, ScaleChat.class);
-                    startActivity(intent);
-                }
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // 如果需要，处理没有选择的情况
-            }
-        });
-
         // 初始化 RecyclerView 和消息列表
         recyclerView = findViewById(R.id.recyclerView1);
         messageList = new ArrayList<>();
@@ -124,18 +91,6 @@ public class ChatOld extends AppCompatActivity {
         //editor.putString("api_key", "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");
         editor.apply();
 
-        ImageButton setting = findViewById(R.id.Setting1);
-        setting.setOnClickListener(v -> {
-            Intent intent = new Intent(ChatOld.this, SettingList.class);
-            startActivityForResult(intent, REQUEST_CODE);
-        });
-
-        TextView textViewName = findViewById(R.id.textView2);
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
-        if (userName != null && !userName.isEmpty()) {
-            textViewName.setText(userName);
-        }
 
         // 初始化 TextToSpeech
         textToSpeech = new TextToSpeech(this, status -> {
@@ -156,16 +111,15 @@ public class ChatOld extends AppCompatActivity {
             startVoiceInput();
         });
 
-
         // 注册广播接收器
         LocalBroadcastManager.getInstance(this).registerReceiver(reminderReceiver,
                 new IntentFilter("com.example.code.REMINDER"));
-
-
     }
 
+    private void callFlaskApi(String query) {
+        // 获取手机型号
+        String phoneModel = Build.MODEL; // 从设备获取手机型号
 
-    private void callFlaskApi(String Query) {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(60, TimeUnit.SECONDS)  // 連線超時
                 .readTimeout(60, TimeUnit.SECONDS)     // 讀取超時
@@ -174,23 +128,20 @@ public class ChatOld extends AppCompatActivity {
 
         // 使用這個 OkHttpClient 建立 Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.245.8:5000/") // 替換為 Flask 伺服器的局域網 IP
+                .baseUrl("http://192.168.10.151:5000") // 替換為 Flask 伺服器的局域網 IP
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient) // 設置自定義 OkHttpClient
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // 模拟一个输入数据，可以从其他地方获取数据
-        String userQuery = Query; // 示例输入数据
-
         // 构建请求对象
-        NostalgicRequest request = new NostalgicRequest(userQuery);
+        NostalgicRequest request = new NostalgicRequest(query, phoneModel);
 
         // 发起网络请求
         Call<ApiResponse> call = apiService.sendQuery(request);
 
-        // 异步请求，使用回调处理S
+        // 异步请求，使用回调处理
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -217,6 +168,7 @@ public class ChatOld extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onDestroy() {

@@ -11,21 +11,13 @@
 
     <!-- Modes for spinners -->
     <string-array name="spinner_modes1">
-        <item>聊天模式</item>
         <item>懷舊模式</item>
         <item>量表模式</item>
     </string-array>
 
     <string-array name="modes_array">
         <item>量表模式</item>
-        <item>聊天模式</item>
         <item>懷舊模式</item>
-    </string-array>
-
-    <string-array name="spinner_modes3">
-        <item>懷舊模式</item>
-        <item>聊天模式</item>
-        <item>量表模式</item>
     </string-array>
 
     <!-- 主類別 -->

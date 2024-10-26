@@ -1,11 +1,11 @@
 package com.example.code.api;
 
-public class HealthEducationRquest {
+public class HealthEducationRequest {
     private String question;
     private String mainCategory;
     private String subCategory;
 
-    public HealthEducationRquest(String question, String mainCategory, String subCategory) {
+    public HealthEducationRequest(String question, String mainCategory, String subCategory) {
         this.question = question;
         this.mainCategory = mainCategory;
         this.subCategory = subCategory;

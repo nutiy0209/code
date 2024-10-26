@@ -1,0 +1,54 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@drawable/welcome">
+
+    <TextView
+        android:id="@+id/text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="36sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="20dp">
+
+        <Button
+            android:id="@+id/patient_button"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:text="患者"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            android:backgroundTint="#C0377F"
+            android:textSize="25sp" />
+
+        <View
+            android:layout_width="16dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/caregiver_button"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:text="照顧者"
+            android:textColor="#FFFFFF"
+            android:visibility="invisible"
+            android:backgroundTint="#4ACDBF"
+            android:textSize="25sp" />
+    </LinearLayout>
+
+</LinearLayout>

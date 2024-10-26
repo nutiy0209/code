@@ -67,7 +67,7 @@ public class ScaleChat extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scale_chat);
 
-        Spinner spinnerModes = findViewById(R.id.SpinnerModes2);
+        Spinner spinnerModes = findViewById(R.id.SpinnerMode2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.modes_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -98,19 +98,6 @@ public class ScaleChat extends AppCompatActivity {
         editor.putString("api_key", "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");
         editor.apply();
 
-
-        ImageButton person = findViewById(R.id.Person1);
-        person.setOnClickListener(v -> {
-            Intent intent = new Intent(ScaleChat.this, Register.class);
-            startActivity(intent);
-        });
-
-        ImageButton setting = findViewById(R.id.Setting1);
-        setting.setOnClickListener(v -> {
-            Intent intent = new Intent(ScaleChat.this, SettingList.class);
-            startActivityForResult(intent, REQUEST_CODE);
-        });
-
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 textToSpeech.setLanguage(Locale.TAIWAN);
@@ -121,12 +108,6 @@ public class ScaleChat extends AppCompatActivity {
             }
         });
 
-        TextView textViewName = findViewById(R.id.textView2);
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
-        if (userName != null && !userName.isEmpty()) {
-            textViewName.setText(userName);
-        }
 
         Button buttonVoiceInput = findViewById(R.id.TALK1);
         buttonVoiceInput.setOnClickListener(v -> startVoiceInput());
@@ -561,3 +542,4 @@ public class ScaleChat extends AppCompatActivity {
         }
     }
 }
+

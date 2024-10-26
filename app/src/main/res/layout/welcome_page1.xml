@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/welcome">
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"/>
+
+    <!-- 歡迎文字 -->
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="36sp"
+        android:textColor="@android:color/black"
+        android:shadowColor="#80000000"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="4"/>
+
+    <!-- 間距 -->
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"/>
+
+    <!-- 下一步按鈕 -->
+    <Button
+        android:id="@+id/next_button"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:text="進入"
+        android:textColor="#FFFFFF"
+        android:visibility="invisible"
+        android:backgroundTint="#4ACDBF"
+        android:radius="10sp"
+        android:textSize="25sp"
+        android:fontFamily="sans-serif-medium"
+        />
+
+</LinearLayout>

@@ -38,11 +38,10 @@ import android.widget.AdapterView;
 import com.example.code.AlarmReceiver;
 import com.example.code.Message;
 import com.example.code.MessageAdapter;
-import com.example.code.api.HealthEducationRquest;
+import com.example.code.api.HealthEducationRequest;
 import com.example.code.R;
 import com.example.code.api.ApiResponse;
 import com.example.code.api.ApiService;
-import com.example.code.exercise.PoseMaster;
 
 public class HealthEducation extends AppCompatActivity {
 
@@ -72,7 +71,7 @@ public class HealthEducation extends AppCompatActivity {
         setContentView(R.layout.health_education);
 
         // 创建适配器
-        Spinner spinnerMode = findViewById(R.id.SpinnerMode3);
+
         Spinner spinnerMainCategory = findViewById(R.id.spinnerMainCategory);
         Spinner spinnerSubCategory = findViewById(R.id.spinnerSubCategory);
         // 主類別選項資料
@@ -80,14 +79,8 @@ public class HealthEducation extends AppCompatActivity {
         ArrayAdapter<String> mainAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, mainCategories);
         mainAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMainCategory.setAdapter(mainAdapter);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.spinner_modes3, android.R.layout.simple_spinner_item);
 
-        // 指定下拉列表的样式
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        // 应用适配器到Spinner
-        spinnerMode.setAdapter(adapter);
 
         // 设置选择事件监听
         // 設定主類別選擇事件監聽器
@@ -117,29 +110,7 @@ public class HealthEducation extends AppCompatActivity {
             }
         });
 
-        spinnerMode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
-                if (isSpinnerInitialized) {
-                    String selectedMode = (String) parent.getItemAtPosition(position);
 
-                    if ("量表模式".equals(selectedMode)) {
-                        Intent intent = new Intent(HealthEducation.this, ScaleChat.class);
-                        startActivity(intent);
-                    }
-                    if ("懷舊模式".equals(selectedMode)) {
-                        Intent intent = new Intent(HealthEducation.this, ChatOld.class);
-                        startActivity(intent);
-                    }
-                }
-                isSpinnerInitialized = true;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // 处理没有选择的情况
-            }
-        });
 
         // 初始化 RecyclerView 和消息列表
         recyclerView = findViewById(R.id.recyclerView1);
@@ -152,26 +123,12 @@ public class HealthEducation extends AppCompatActivity {
         editor.putString("api_key", "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");
         editor.apply();
 
-        // 按钮设置
-
-        ImageButton setting = findViewById(R.id.Setting1);
-        setting.setOnClickListener(v -> {
-            Intent intent = new Intent(HealthEducation.this, SettingList.class);
-            startActivityForResult(intent, REQUEST_CODE);
-        });
-
-        TextView textViewName = findViewById(R.id.textView2);
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra("userName");
-        if (userName != null && !userName.isEmpty()) {
-            textViewName.setText(userName);
-        }
 
         // 初始化 TextToSpeech
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 textToSpeech.setLanguage(Locale.TAIWAN);
-                String welcomeText = "你好，今天想聊些什麼";
+                String welcomeText = "你好，今天想聊些什麼 ?";
                 speak(welcomeText);
                 addMessageToChat(welcomeText, false);
             } else {
@@ -225,7 +182,7 @@ public class HealthEducation extends AppCompatActivity {
         ApiService apiService = retrofit.create(ApiService.class);
 
         // 构建请求对象，包含用戶的查詢和選擇的類別信息
-        HealthEducationRquest request = new HealthEducationRquest(query, selectedMainCategory, selectedSubCategory);
+        HealthEducationRequest request = new HealthEducationRequest(query, selectedMainCategory, selectedSubCategory);
 
         // 發起網絡請求
         Call<ApiResponse> call = apiService.sendQuery(request);
