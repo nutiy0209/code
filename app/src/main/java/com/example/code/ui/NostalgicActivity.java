@@ -44,6 +44,7 @@ import com.example.code.Message;
 import com.example.code.MessageAdapter;
 import com.example.code.api.NostalgicRequest;
 import com.example.code.R;
+import android.os.Build;
 
 public class NostalgicActivity extends AppCompatActivity {
 
@@ -177,7 +178,10 @@ public class NostalgicActivity extends AppCompatActivity {
     }
 
 
-    private void callFlaskApi(String Query) {
+    private void callFlaskApi(String query) {
+        // 获取手机型号
+        String phoneModel = Build.MODEL; // 从设备获取手机型号
+
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(60, TimeUnit.SECONDS)  // 連線超時
                 .readTimeout(60, TimeUnit.SECONDS)     // 讀取超時
@@ -186,23 +190,20 @@ public class NostalgicActivity extends AppCompatActivity {
 
         // 使用這個 OkHttpClient 建立 Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.245.8:5000/") // 替換為 Flask 伺服器的局域網 IP
+                .baseUrl("http://192.168.10.151:5000") // 替換為 Flask 伺服器的局域網 IP
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okHttpClient) // 設置自定義 OkHttpClient
                 .build();
 
         ApiService apiService = retrofit.create(ApiService.class);
 
-        // 模拟一个输入数据，可以从其他地方获取数据
-        String userQuery = Query; // 示例输入数据
-
         // 构建请求对象
-        NostalgicRequest request = new NostalgicRequest(userQuery);
+        NostalgicRequest request = new NostalgicRequest(query, phoneModel);
 
         // 发起网络请求
         Call<ApiResponse> call = apiService.sendQuery(request);
 
-        // 异步请求，使用回调处理S
+        // 异步请求，使用回调处理
         call.enqueue(new Callback<ApiResponse>() {
             @Override
             public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
@@ -229,6 +230,7 @@ public class NostalgicActivity extends AppCompatActivity {
             }
         });
     }
+
 
     @Override
     protected void onDestroy() {

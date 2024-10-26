@@ -38,7 +38,7 @@ import android.widget.AdapterView;
 import com.example.code.AlarmReceiver;
 import com.example.code.Message;
 import com.example.code.MessageAdapter;
-import com.example.code.api.HealthEducationRquest;
+import com.example.code.api.HealthEducationRequest;
 import com.example.code.R;
 import com.example.code.api.ApiResponse;
 import com.example.code.api.ApiService;
@@ -237,7 +237,7 @@ public class HealthEducation extends AppCompatActivity {
         ApiService apiService = retrofit.create(ApiService.class);
 
         // 构建请求对象，包含用戶的查詢和選擇的類別信息
-        HealthEducationRquest request = new HealthEducationRquest(query, selectedMainCategory, selectedSubCategory);
+        HealthEducationRequest request = new HealthEducationRequest(query, selectedMainCategory, selectedSubCategory);
 
         // 發起網絡請求
         Call<ApiResponse> call = apiService.sendQuery(request);
